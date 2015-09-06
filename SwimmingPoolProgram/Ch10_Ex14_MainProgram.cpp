@@ -5,59 +5,63 @@
 using namespace std;
 
 void printMainMenu();
+void printPoolVolume();
+void printGetPoolVolume();
+
+SwimmingPool pool;
+
+double _length;
+double _width;
+double _depth;
+
+double _currentWaterVolume;
+
+bool _end;
 
 int main() 
 {
 	int response;
 
-	double _length;
-	double _width;
-	double _depth;
+	cout << fixed << showpoint << setprecision(1);
 
-	SwimmingPool pool;
-
-	cout << fixed << showpoint << setprecision(2);
-
-	printMainMenu();
-	
-	cin >> response;
-
-	switch(response)
+	while (!_end)
 	{
-	case 1:
-		//if (pool.hasDimensions())
-		//	cout << "pool has dimensions";
-		//else
-		//{
-			cout << "Enter pool dimensions:\n"
-				<< "Length: ";
-			cin >> _length;
-			//pool.setLength(_length);
+		printMainMenu();
 
-			cout << "\nWidth: ";
-			cin >> _width;
-			//pool.setWidth(_width);
+		cin >> response;
 
-			cout << "\nDepth: ";
-			cin >> _depth;
-			//pool.setDepth(_depth);
-		//}
+		switch (response)
+		{
+		case 1:
+			if (pool.hasDimensions())
+				printPoolVolume();
+			else
+			{
+				printGetPoolVolume();
+				printPoolVolume();
+			}
 
-		break;
-	case 2:
-		cout << "";
-		break;
-	case 3:
-		cout << "";
-		break;
-	case 4:
-		cout << "";
-		break;
-	case 5:
-		cout << "";
-		break;
+			break;
+
+		case 2:
+			cout << "Water needed: "
+				<< pool.getFillAmount(_currentWaterVolume);
+			break;
+
+		case 3:
+			cout << "";
+			break;
+
+		case 4:
+			cout << "";
+			break;
+
+		case 5:
+			cout << "";
+			break;
+		}
 	}
-	cout << response;
+
 	system("pause");
 
 	return EXIT_SUCCESS;
@@ -76,4 +80,29 @@ void printMainMenu()
 		<< " 5)	fill pool\n"
 		<< " 6)	drain pool\n\n"
 		<< " Choice: ";
+}
+
+void printPoolVolume()
+{
+	cout << "\n Pool volume is "
+		<< pool.getVolume()
+		<< endl
+		<< endl;
+}
+
+void printGetPoolVolume()
+{
+	cout << "\n Enter pool dimensions:"
+		<< endl
+		<< " Length: ";
+	cin >> _length;
+	pool.setLength(_length);
+
+	cout << " Width: ";
+	cin >> _width;
+	pool.setWidth(_width);
+
+	cout << " Depth: ";
+	cin >> _depth;
+	pool.setDepth(_depth);
 }

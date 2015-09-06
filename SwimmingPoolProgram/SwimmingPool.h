@@ -1,8 +1,8 @@
 #pragma once
 class SwimmingPool
 {
-public:
 
+public:
 	SwimmingPool();
 	SwimmingPool(double, double, double);
 	SwimmingPool(double, double, double, double, double);
@@ -22,4 +22,13 @@ public:
 	double fill(int);
 
 	bool hasDimensions();
+
+private:
+	double _length;
+	double _width;
+	double _depth;
+	double _fillRate;
+	double _drainRate;
+
+	double _volume;
 };

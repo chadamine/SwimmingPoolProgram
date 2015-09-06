@@ -4,117 +4,107 @@
 * CSC 161 C01
 */
 
-// Class declaration
-class SwimmingPool
+#include "SwimmingPool.h"
+using namespace std;
+
+
+// Default constructor
+SwimmingPool::SwimmingPool() 
+{ 
+	_length = 0;
+	_width = 0;
+	_depth = 0;
+}
+
+// Basic constructor defined with member initialization
+SwimmingPool::SwimmingPool (double l, double w, double d) :_length(l), _width(w), _depth(d)
 {
-	// Instance variables
-	double _length;
-	double _width;
-	double _depth;
-	double _fillRate;
-	double _drainRate;
+	// Assign to the instance variables the arguments passed to constructo
 
-	double _volume;
+	_volume = _length * _width * _depth;
+}
 
-	// Default constructor
-	SwimmingPool::SwimmingPool() 
-	{ 
-		_length = 0;
-		_width = 0;
-		_depth = 0;
-	}
+// Full Constructor
+SwimmingPool::SwimmingPool(double length, double width, double depth, double fillRate, double drainRate)
+{
+	// Assign to the instance variables the arguments passed to constructor
+	_length = length;
+	_width = width;
+	_depth = depth;
+	_fillRate = fillRate;
+	_drainRate = drainRate;
 
-	// Basic constructor defined with member initialization
-	SwimmingPool::SwimmingPool (double l, double w, double d) :_length(l), _width(w), _depth(d)
-	{
-		// Assign to the instance variables the arguments passed to constructo
+	_volume = getVolume();
+	// Get the volume 
+}
 
-		_volume = _length * _width * _depth;
-	}
+void SwimmingPool::setLength(double l)
+{
+	_length = l;
+}
 
-	// Full Constructor
-	SwimmingPool::SwimmingPool(double length, double width, double depth, double fillRate, double drainRate)
-	{
-		// Assign to the instance variables the arguments passed to constructor
-		_length = length;
-		_width = width;
-		_depth = depth;
-		_fillRate = fillRate;
-		_drainRate = drainRate;
+void SwimmingPool::setWidth(double w)
+{
+	_width = w;
+}
 
-		_volume = getVolume();
-		// Get the volume 
-	}
+void SwimmingPool::setDepth(double d)
+{
+	_depth = d;
+}
 
-	void SwimmingPool::setLength(double l)
-	{
-		_length = l;
-	}
+void SwimmingPool::setDrainRate(double r)
+{
+	_drainRate = r;
+}
 
-	void SwimmingPool::setWidth(double w)
-	{
-		_width = w;
-	}
+void SwimmingPool::setFillRate(double r)
+{
+	_fillRate = r;
+}
+// Member function to calculate volume
+double SwimmingPool::getVolume() 
+{
+	// No need to check values of instance variables
 
-	void SwimmingPool::setDepth(double d)
-	{
-		_depth = d;
-	}
+	// Return the volume
+	return _length * _width * _depth;
+}
 
-	void SwimmingPool::setDrainRate(double r)
-	{
-		_drainRate = r;
-	}
+// Returns amount of water needed to fill an empty or partially filled pool
+double SwimmingPool::getFillAmount(double currentWaterVolume)
+{
 
-	void SwimmingPool::setFillRate(double r)
-	{
-		_fillRate = r;
-	}
-	// Member function to calculate volume
-	double SwimmingPool::getVolume() 
-	{
-		// No need to check values of instance variables
+	return _volume - currentWaterVolume;
+}
 
-		// Return the volume
-		return _length * _width * _depth;
-	}
+// Returns time needed to completely or partially drain the pool
+int SwimmingPool::getDrainTime() 
+{
+	return 0;
+}
 
-	// Returns amount of water needed to fill an empty or partially filled pool
-	double SwimmingPool::getFillAmount(double currentWaterVolume)
-	{
+// Returns the time need to completely or partially drain the pool
+int SwimmingPool::getFillTime()
+{
+	return 0;
+}
 
-		return _volume - currentWaterVolume;
-	}
+// Drain the pool for a specified time period
+// Returns adjusted water volume
+double SwimmingPool::drain(int time)
+{
+	return 0;
+}
 
-	// Returns time needed to completely or partially drain the pool
-	int SwimmingPool::getDrainTime() 
-	{
-		return 0;
-	}
+// Fill the pool for a specified time period
+// Returns adjusted water volume
+double SwimmingPool::fill(int time)
+{
+	return 0;
+}
 
-	// Returns the time need to completely or partially drain the pool
-	int SwimmingPool::getFillTime()
-	{
-
-	}
-
-	// Drain the pool for a specified time period
-	// Returns adjusted water volume
-	double SwimmingPool::drain(int time)
-	{
-		return 0;
-	}
-
-	// Fill the pool for a specified time period
-	// Returns adjusted water volume
-	double SwimmingPool::fill(int time)
-	{
-		return 0;
-	}
-
-	bool SwimmingPool::hasDimensions()
-	{
-		return 0;
-	}
-
-};
+bool SwimmingPool::hasDimensions()
+{
+	return 0;
+}
