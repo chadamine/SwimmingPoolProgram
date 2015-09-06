@@ -22,6 +22,7 @@ public:
 	double fill(int);
 
 	bool hasDimensions();
+	bool hasWater();
 
 private:
 	double _length;
@@ -31,4 +32,5 @@ private:
 	double _drainRate;
 
 	double _volume;
+	double _waterVolume;
 };

@@ -106,5 +106,16 @@ double SwimmingPool::fill(int time)
 
 bool SwimmingPool::hasDimensions()
 {
-	return 0;
+	if (_length > 0 && _width > 0 && _depth > 0)
+		return true;
+	else
+		return false;
+}
+
+bool SwimmingPool::hasWater()
+{
+	if (_waterVolume > 0)
+		return true;
+	else
+		return false;
 }
