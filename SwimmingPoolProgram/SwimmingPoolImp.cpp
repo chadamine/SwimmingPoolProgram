@@ -58,9 +58,29 @@ void SwimmingPool::setDrainRate(double r)
 	_drainRate = r;
 }
 
+double SwimmingPool::getDrainRate()
+{
+	return _drainRate;
+}
+
 void SwimmingPool::setFillRate(double r)
 {
 	_fillRate = r;
+}
+
+double SwimmingPool::getFillRate()
+{
+	return _fillRate;
+}
+
+void SwimmingPool::setFillTime(int t)
+{
+	_fillTime = t;
+}
+
+void SwimmingPool::setDrainTime(int t)
+{
+	_drainTime = t;
 }
 // Member function to calculate volume
 double SwimmingPool::getVolume() 
@@ -71,31 +91,51 @@ double SwimmingPool::getVolume()
 	return _length * _width * _depth;
 }
 
+void SwimmingPool::setWaterVolume(double v)
+{
+	_waterVolume = v;
+}
+double SwimmingPool::getWaterVolume()
+{
+	return _waterVolume;
+}
+
 // Returns amount of water needed to fill an empty or partially filled pool
 double SwimmingPool::getFillAmount(double currentWaterVolume)
 {
 
-	return _volume - currentWaterVolume;
+	return getVolume() - currentWaterVolume;
 }
 
 // Returns time needed to completely or partially drain the pool
 int SwimmingPool::getDrainTime() 
 {
-	return 0;
+	return (int)(_waterVolume/_drainRate);
 }
 
 // Returns the time need to completely or partially drain the pool
 int SwimmingPool::getFillTime()
 {
-	return 0;
+	return (int)(getVolume()/_fillRate);
 }
 
 // Drain the pool for a specified time period
 // Returns adjusted water volume
-double SwimmingPool::drain(int time)
+double SwimmingPool::drain()
 {
-	return 0;
+	double waterDrained = _drainRate * _drainTime;
+	
+	_waterVolume -= waterDrained;
+	if (_waterVolume < 0)
+		_waterVolume = 0;
+	return waterDrained;
 }
+
+double SwimmingPool::fill()
+{
+	_waterVolume += _fillRate * _fillTime;
+	return _waterVolume;
+} 
 
 // Fill the pool for a specified time period
 // Returns adjusted water volume
@@ -103,6 +143,8 @@ double SwimmingPool::fill(int time)
 {
 	return 0;
 }
+
+
 
 bool SwimmingPool::hasDimensions()
 {
